@@ -22,6 +22,9 @@
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Nama Jabatan</label>
                             <input type="text" class="form-control" name="nama_jabatan" placeholder="masukkan nama jabatan...">
+                            @error('nama_jabatan')
+                                <span style="color: red; font-size: 12px">{{ $message }}</span>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

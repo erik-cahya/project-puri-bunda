@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->segment(1) === 'dashboard' ? 'active' : '' }}">
-        <a class="nav-link" href="/dashboard">
+        <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -26,7 +26,7 @@
 
 
 
-    <!-- Nav Item - Data Jabatan-->
+    <!-- Nav Item - Data Karyawan-->
     <li class="nav-item {{ request()->segment(1) === 'karyawan' ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#karyawanCollapsed"
             aria-expanded="true" aria-controls="karyawanCollapsed">
@@ -35,7 +35,7 @@
         </a>
         <div id="karyawanCollapsed" class="collapse {{ request()->segment(1) === 'karyawan' ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ request()->segment(1) === 'karyawan' && request()->segment(2) === null ? 'active' : '' }}" href="/karyawan">Data Jabatan</a>
+                <a class="collapse-item {{ request()->segment(1) === 'karyawan' && request()->segment(2) === null ? 'active' : '' }}" href="/karyawan">Data Karyawan</a>
                 <a class="collapse-item {{ request()->segment(1) === 'karyawan' && request()->segment(2) === 'create' ? 'active' : '' }}" href="/karyawan/create">Tambah Data</a>
             </div>
         </div>

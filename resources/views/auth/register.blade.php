@@ -47,9 +47,9 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputPassword" placeholder="Username" name="username">
-                                        @error('username')
-                                            <span style="color: red; font-size: 12px">{{ $message }}</span>
-                                        @enderror
+                                    @error('username')
+                                        <span style="color: red; font-size: 12px">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 
                                 <div class="form-group row">

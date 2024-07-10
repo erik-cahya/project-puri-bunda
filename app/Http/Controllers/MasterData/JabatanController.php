@@ -40,6 +40,10 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama_jabatan' => 'required|unique:data_jabatan',
+        ]);
+
         JabatanModel::create([
             'nama_jabatan' => $request->nama_jabatan
         ]);

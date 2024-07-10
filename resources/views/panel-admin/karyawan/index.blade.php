@@ -25,13 +25,16 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="jabatan-table" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="karyawan-table" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th width="100">No</th>
                                     <th>Nama</th>
                                     <th>Username</th>
-                                    <th>Unit Jabatan</th>
+                                    <th>Jabatan 1</th>
+                                    <th>Jabatan 2</th>
+                                    <th>Unit</th>
+                                    <th>Tanggal Bergabung</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -55,11 +58,11 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#jabatan-table').DataTable({
+            $('#karyawan-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('jabatan.data') }}',
+                    url: '{{ route('karyawan.data') }}',
                     type: 'GET',
                     dataType: 'json',
                     dataSrc: function (json) {
@@ -68,9 +71,12 @@
                 },
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false }, // Kolom untuk nomor urut
-                    { data: 'nama_jabatan', name: 'nama_jabatan' },
-                    { data: 'nama_jabatan', name: 'nama_jabatan' },
-                    { data: 'nama_jabatan', name: 'nama_jabatan' },
+                    { data: 'nama_karyawan', name: 'nama_karyawan' },
+                    { data: 'username', name: 'username' },
+                    { data: 'nama_jabatan_1', name: 'nama_jabatan_1' },
+                    { data: 'nama_jabatan_2', name: 'nama_jabatan_2' },
+                    { data: 'nama_unit', name: 'nama_unit' },
+                    { data: 'tanggal_bergabung', name: 'tanggal_bergabung' },
                     { 
                     data: 'action', 
                     name: 'action', 
@@ -88,15 +94,15 @@
         });
 
         function editItem(id) {
-            window.location.href = '/jabatan/' + id + '/edit';
+            window.location.href = '/karyawan/' + id + '/edit';
         }
 
         function deleteItem(id) {
         if (confirm("Are you sure you want to delete this item?")) {
-            axios.delete('/jabatan/' + id)
+            axios.delete('/karyawan/' + id)
                 .then(function (response) {
                     // HotReload Data Table
-                    $('#jabatan-table').DataTable().ajax.reload();
+                    $('#karyawan-table').DataTable().ajax.reload();
                 })
                 .catch(function (error) {
                     console.error('Error deleting item: ' + error);

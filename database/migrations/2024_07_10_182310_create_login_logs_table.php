@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('karyawan', function (Blueprint $table) {
+        Schema::create('login_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_karyawan');
-            $table->integer('id_jabatan_1')->nullable();
-            $table->integer('id_jabatan_2')->nullable();
-            $table->integer('id_unit')->nullable();
-            $table->date('tanggal_bergabung');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('login_at')->useCurrent();
+            $table->string('last_login_ip')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('karyawan');
+        Schema::dropIfExists('login_logs');
     }
 };

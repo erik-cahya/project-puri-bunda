@@ -39,6 +39,10 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nama_unit' => 'required|unique:data_unit',
+        ]);
+
         UnitModel::create([
             'nama_unit' => $request->nama_unit
         ]);
@@ -71,7 +75,7 @@ class UnitController extends Controller
         $item = UnitModel::find($id);
         $item->nama_unit = $request->nama_unit;
         $item->save();
-    
+
         return response()->json(['success' => true]);
     }
 
