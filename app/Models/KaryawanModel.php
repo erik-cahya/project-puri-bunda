@@ -10,9 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 class KaryawanModel extends Model implements AuthenticatableContract
 {
     use HasFactory, Authenticatable;
-    
+
     protected $table = 'karyawan';
     protected $guarded = ['id'];
     protected $primaryKey = 'id';
-
 }

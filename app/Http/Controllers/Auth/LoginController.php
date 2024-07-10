@@ -8,14 +8,16 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('auth.login');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $credentials = $request->only(['username', 'password']);
 
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             return redirect()->intended('dashboard');
         }
         return redirect('login')->withErrors('Login details are not valid');

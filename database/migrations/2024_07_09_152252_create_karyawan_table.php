@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('unit_jabatan');
+            $table->string('nama_karyawan');
+            $table->string('jabatan_1')->nullable();
+            $table->string('jabatan_2')->nullable();
             $table->date('tanggal_bergabung');
             $table->timestamps();
         });

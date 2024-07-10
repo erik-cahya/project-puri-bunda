@@ -27,6 +27,21 @@
 
 
     <!-- Nav Item - Data Jabatan-->
+    <li class="nav-item {{ request()->segment(1) === 'karyawan' ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#karyawanCollapsed"
+            aria-expanded="true" aria-controls="karyawanCollapsed">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Karyawan</span>
+        </a>
+        <div id="karyawanCollapsed" class="collapse {{ request()->segment(1) === 'karyawan' ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ request()->segment(1) === 'karyawan' && request()->segment(2) === null ? 'active' : '' }}" href="/karyawan">Data Jabatan</a>
+                <a class="collapse-item {{ request()->segment(1) === 'karyawan' && request()->segment(2) === 'create' ? 'active' : '' }}" href="/karyawan/create">Tambah Data</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Data Jabatan-->
     <li class="nav-item {{ request()->segment(1) === 'jabatan' ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#jabatanCollapse"
             aria-expanded="true" aria-controls="jabatanCollapse">
