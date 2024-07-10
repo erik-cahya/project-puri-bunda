@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Admin Panel</div>
     </a>
 
     <hr class="sidebar-divider my-0">
@@ -23,8 +23,6 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">Master Data</div>
-
-
 
     <!-- Nav Item - Data Karyawan-->
     <li class="nav-item {{ request()->segment(1) === 'karyawan' ? 'active' : '' }}">
