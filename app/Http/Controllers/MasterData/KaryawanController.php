@@ -151,17 +151,11 @@ class KaryawanController extends Controller
         $item->nama_karyawan = $request->nama_karyawan;
         $item->id_jabatan_1 = $request->jabatan[0];
         $item->id_jabatan_2 = $request->jabatan[1] ?? null;
+        $item->tanggal_bergabung = Carbon::createFromFormat('d-m-Y', $request->tanggal_bergabung)->format('Y-m-d');
+    
         $item->save();
 
         return response()->json(['success' => true]);
-
-        $idKaryawan = KaryawanModel::create([
-            'nama_karyawan' => $request->nama_karyawan,
-            'id_jabatan_1' => $request->jabatan[0],
-            'id_jabatan_2' => $request->jabatan[1] ?? null,
-            'id_unit' => $request->unit,
-            'tanggal_bergabung' => Carbon::createFromFormat('d-m-Y', $request->tanggal_bergabung)->format('Y-m-d'),
-        ]);
     }
 
     /**
