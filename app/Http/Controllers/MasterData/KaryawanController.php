@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\MasterData;
 
 use App\Http\Controllers\Controller;
+use App\Models\KaryawanModel;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class KaryawanController extends Controller
 {
@@ -15,12 +17,22 @@ class KaryawanController extends Controller
         return view('panel-admin.karyawan.index');
     }
 
+    public function getData(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = KaryawanModel::all();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('panel-admin.karyawan.create');
     }
 
     /**

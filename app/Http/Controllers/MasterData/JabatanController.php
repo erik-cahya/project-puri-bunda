@@ -33,7 +33,6 @@ class JabatanController extends Controller
     public function create()
     {
         return view('panel-admin.jabatan.create');
-        
     }
 
     /**
@@ -73,7 +72,7 @@ class JabatanController extends Controller
         $item = JabatanModel::find($id);
         $item->nama_jabatan = $request->nama_jabatan;
         $item->save();
-    
+
         return response()->json(['success' => true]);
     }
 

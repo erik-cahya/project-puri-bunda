@@ -15,7 +15,9 @@
 
     <title>Hospital Dashboard</title>
     
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css"> --}}
+    {{-- Select2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <link href="{{ asset('asset') }}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
@@ -317,6 +319,8 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('asset') }}/js/demo/chart-area-demo.js"></script>
     <script src="{{ asset('asset') }}/js/demo/chart-pie-demo.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     @yield('script')
 
