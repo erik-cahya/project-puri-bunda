@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function loginLogs()
+    {
+        return $this->hasMany(LoginLogModel::class, 'user_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
