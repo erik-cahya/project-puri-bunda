@@ -61,12 +61,13 @@ class DashboardController extends Controller
         $users = User::whereBetween('created_at', [$startDate, $endDate])->get();
         // Tambahkan jumlah login ke setiap pengguna
         foreach ($users as $user) {
-            $user->login_count = LoginLogModel::where('user_id', $user->id)->count();
+            $user->login_count = LoginLogModel::where('user_id', $user->id)->whereBetween('created_at', [$startDate, $endDate])->count();
         }
         $data['dataUser'] = $users;
 
         // Ambil 10 pengguna teratas dengan jumlah login lebih dari 25 kali
         $topUsers = User::withCount('loginLogs')
+            ->whereBetween('created_at', [$startDate, $endDate])
             ->having('login_logs_count', '>', 25)
             ->orderBy('login_logs_count', 'desc')
             ->take(10)
