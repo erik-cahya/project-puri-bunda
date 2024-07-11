@@ -21,7 +21,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countKaryawan }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fas fa-user-tie fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countUnit }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countLogin }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                            <i class="fas fa-sign-in-alt fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
