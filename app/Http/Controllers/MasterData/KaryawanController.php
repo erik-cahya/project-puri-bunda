@@ -152,8 +152,17 @@ class KaryawanController extends Controller
         $item->id_jabatan_1 = $request->jabatan[0];
         $item->id_jabatan_2 = $request->jabatan[1] ?? null;
         $item->tanggal_bergabung = Carbon::createFromFormat('d-m-Y', $request->tanggal_bergabung)->format('Y-m-d');
-    
+
         $item->save();
+
+        User::updateOrCreate([
+            'id_karyawan' => $id,
+        ], [
+            'id_karyawan' => $id,
+            'name' => $request->nama_karyawan,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+        ]);
 
         return response()->json(['success' => true]);
     }
