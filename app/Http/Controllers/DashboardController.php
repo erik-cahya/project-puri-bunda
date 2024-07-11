@@ -14,7 +14,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // dd(KaryawanModel::whereBetween('created_at', ['2024-07-10 00:00:00', '2024-07-10 23:59:59'])->count());
+        $data['startDate'] = Carbon::now()->format('d-m-Y');
+        $data['endDate'] = Carbon::now()->format('d-m-Y');
 
         $data['countKaryawan'] = KaryawanModel::count();
         $data['countUnit'] = UnitModel::count();
@@ -48,26 +49,29 @@ class DashboardController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
         ]);
-        $startDate = Carbon::createFromFormat('d-m-Y', $request->input('start_date'))->format('Y-m-d') . ' 00:00:00';
-        $endDate = Carbon::createFromFormat('d-m-Y', $request->input('end_date'))->format('Y-m-d') . ' 23:59:59';
 
+        $data['startDate'] = $request->input('start_date');
+        $data['endDate'] = $request->input('end_date');
 
-        $data['countKaryawan'] = KaryawanModel::whereBetween('created_at', [$startDate, $endDate])->count();
-        $data['countUnit'] = UnitModel::whereBetween('created_at', [$startDate, $endDate])->count();
-        $data['countJabatan'] = JabatanModel::whereBetween('created_at', [$startDate, $endDate])->count();
-        $data['countLogin'] = LoginLogModel::whereBetween('created_at', [$startDate, $endDate])->count();
+        $startDateFormatted = Carbon::createFromFormat('d-m-Y', $request->input('start_date'))->format('Y-m-d') . ' 00:00:00';
+        $endDateFormatted = Carbon::createFromFormat('d-m-Y', $request->input('end_date'))->format('Y-m-d') . ' 23:59:59';
+
+        $data['countKaryawan'] = KaryawanModel::whereBetween('created_at', [$startDateFormatted, $endDateFormatted])->count();
+        $data['countUnit'] = UnitModel::whereBetween('created_at', [$startDateFormatted, $endDateFormatted])->count();
+        $data['countJabatan'] = JabatanModel::whereBetween('created_at', [$startDateFormatted, $endDateFormatted])->count();
+        $data['countLogin'] = LoginLogModel::whereBetween('created_at', [$startDateFormatted, $endDateFormatted])->count();
 
         // Ambil semua data user
-        $users = User::whereBetween('created_at', [$startDate, $endDate])->get();
+        $users = User::whereBetween('created_at', [$startDateFormatted, $endDateFormatted])->get();
         // Tambahkan jumlah login ke setiap pengguna
         foreach ($users as $user) {
-            $user->login_count = LoginLogModel::where('user_id', $user->id)->whereBetween('created_at', [$startDate, $endDate])->count();
+            $user->login_count = LoginLogModel::where('user_id', $user->id)->whereBetween('created_at', [$startDateFormatted, $endDateFormatted])->count();
         }
         $data['dataUser'] = $users;
 
         // Ambil 10 pengguna teratas dengan jumlah login lebih dari 25 kali
         $topUsers = User::withCount('loginLogs')
-            ->whereBetween('created_at', [$startDate, $endDate])
+            ->whereBetween('created_at', [$startDateFormatted, $endDateFormatted])
             ->having('login_logs_count', '>', 25)
             ->orderBy('login_logs_count', 'desc')
             ->take(10)

@@ -1,26 +1,26 @@
 @extends('panel-admin.partials.master')
+@section('styling_page')
+    <style>
+        .input-group.input-daterange {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group-addon {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            max-width: 200px;
+        }
+
+        .datepicker {
+            z-index: 1600 !important; /* make sure datepicker is above other elements */
+        }
+    </style>
+@endsection
 @section('content')
-
-<style>
-    .input-group.input-daterange {
-        display: flex;
-        align-items: center;
-    }
-
-    .input-group-addon {
-        margin: 0 10px;
-        font-weight: bold;
-    }
-
-    .form-control {
-        max-width: 200px;
-    }
-
-    .datepicker {
-        z-index: 1600 !important; /* make sure datepicker is above other elements */
-    }
-</style>
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -31,9 +31,9 @@
         <div class="mb-3">
             <form method="GET" action="{{ route('filter') }}">
                 <div class="input-group input-daterange">
-                    <input type="text" id="start_date" class="form-control" name="start_date" required>
+                    <input type="text" id="start_date" class="form-control" name="start_date" value="{{ $startDate }}" required>
                     <div class="input-group-addon">to</div>
-                    <input type="text" id="end_date" class="form-control" name="end_date" required>
+                    <input type="text" id="end_date" class="form-control" name="end_date" value="{{ $endDate }}" required>
                     <div class="input-group-addon">
                         <button type="submit" class="btn btn-primary">Filter</button>
                     </div>
@@ -211,23 +211,12 @@
 
      <script>
         $(document).ready(function() {
-    
             $('.input-daterange input').each(function() {
                 $(this).datepicker({
                     format: 'dd-mm-yyyy',
                     todayHighlight: true
                 });
             });
-              // Set the current date in datepicker
-        const today = new Date();
-        const day = String(today.getDate()).padStart(2, '0');
-        const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
-        const year = today.getFullYear();
-        const formattedDate = `${day}-${month}-${year}`;
-
-        $('#start_date').val(formattedDate);
-        $('#end_date').val(formattedDate);
-    
         });
     </script>
 @endsection
