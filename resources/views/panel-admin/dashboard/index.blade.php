@@ -16,7 +16,7 @@
         }
 
         .datepicker {
-            z-index: 1600 !important; /* make sure datepicker is above other elements */
+            z-index: 1600 !important; 
         }
     </style>
 @endsection
