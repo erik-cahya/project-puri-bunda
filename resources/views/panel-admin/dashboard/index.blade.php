@@ -1,11 +1,45 @@
 @extends('panel-admin.partials.master')
 @section('content')
+
+<style>
+    .input-group.input-daterange {
+        display: flex;
+        align-items: center;
+    }
+
+    .input-group-addon {
+        margin: 0 10px;
+        font-weight: bold;
+    }
+
+    .form-control {
+        max-width: 200px;
+    }
+
+    .datepicker {
+        z-index: 1600 !important; /* make sure datepicker is above other elements */
+    }
+</style>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        
+        <div class="mb-3">
+            <form method="GET" action="{{ route('filter') }}">
+                <div class="input-group input-daterange">
+                    <input type="text" id="start_date" class="form-control" name="start_date" required>
+                    <div class="input-group-addon">to</div>
+                    <input type="text" id="end_date" class="form-control" name="end_date" required>
+                    <div class="input-group-addon">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Content Row -->
@@ -166,7 +200,7 @@
 <!-- /.container-fluid -->
 @endsection
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -174,4 +208,26 @@
      <script src="{{ asset('asset') }}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
  
      <script src="{{ asset('asset') }}/js/demo/datatables-demo.js"></script>
+
+     <script>
+        $(document).ready(function() {
+    
+            $('.input-daterange input').each(function() {
+                $(this).datepicker({
+                    format: 'dd-mm-yyyy',
+                    todayHighlight: true
+                });
+            });
+              // Set the current date in datepicker
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+        const year = today.getFullYear();
+        const formattedDate = `${day}-${month}-${year}`;
+
+        $('#start_date').val(formattedDate);
+        $('#end_date').val(formattedDate);
+    
+        });
+    </script>
 @endsection

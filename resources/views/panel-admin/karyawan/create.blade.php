@@ -80,6 +80,8 @@
                             @enderror
                         </div>
 
+                        
+
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
@@ -95,6 +97,10 @@
 @section('script')
 <script>
     $(document).ready(function() {
+
+        $('.input-daterange input').each(function() {
+            $(this).datepicker('clearDates');
+        });
        
         $('.datepicker').datepicker({
             format: 'dd-mm-yyyy',

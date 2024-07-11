@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 // ################# Authentications Auth Access
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/filter', [DashboardController::class, 'filter'])->name('filter');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // ################# Master Data Karyawan
